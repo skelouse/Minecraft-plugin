@@ -9,6 +9,3 @@ commands:
   hg:
     description: Pulls up help menu for Hunger Games.
     usage: /<command>
-    description: hg commands
-  hg start:
-    description: apple
