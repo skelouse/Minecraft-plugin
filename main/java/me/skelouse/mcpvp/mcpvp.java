@@ -29,6 +29,8 @@ public class mcpvp extends JavaPlugin implements Listener{
         // Plugin startup logic
         System.out.println("mcpvp.onEnable()");
 
+        getServer().getWorld("world").setSpawnLocation(0, 150, 0);
+
         game.setup();
         engine.setup();
         kitman.setup();

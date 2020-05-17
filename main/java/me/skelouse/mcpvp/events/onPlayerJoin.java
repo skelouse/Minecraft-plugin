@@ -10,8 +10,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 
 public class onPlayerJoin implements Listener {
-    KitManager kitman = KitManager.getInstance();
     Game game = Game.getInstance();
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
@@ -20,9 +20,6 @@ public class onPlayerJoin implements Listener {
         if (game.game_started){
 
             for(Player x : game.playersInGame){
-                System.out.println("onPlayerJoin for player x :");
-                System.out.println(p.getUniqueId());
-                System.out.println(x.getUniqueId());
                 if (p.getUniqueId().equals(x.getUniqueId())){
                     eligible = true;
                 }
@@ -46,7 +43,7 @@ public class onPlayerJoin implements Listener {
             // add to HashMap if not in
             boolean inKits;
             try{
-                kitman.getPlayerKit(p.getUniqueId());
+                KitManager.getPlayerKit(p.getUniqueId());
             } catch (NullPointerException exc){
                 game.playerKits.put(p.getUniqueId(), "");
             }

@@ -14,13 +14,15 @@ public class onPlayerDeath implements Listener {
     Messenger messenger = Messenger.getInstance();
     @EventHandler
     public void OnPlayerDeath(PlayerDeathEvent e){
+        System.out.println("onPlayerDeath");
+        game.playersInGame.remove(e.getEntity());
         if (game.game_started){
-
             if (game.playersInGame.size() <= 1){
                 // WIN
+                e.getEntity().kickPlayer("Try again next time!");
                 messenger.msgAll("WINNER!");
                 game.invincibility = true;
-                engine.winGame(e.getEntity());
+                engine.winGame(game.playersInGame.iterator().next());
 
             } else{
                 e.getEntity().kickPlayer("Try again next time!");

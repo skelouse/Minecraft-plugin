@@ -18,18 +18,13 @@ public class Worm implements Listener{
     @EventHandler
     public void breakDirt(BlockDamageEvent e){
         Player p = e.getPlayer();
-        p.sendMessage(game.playerKits.toString());
         if (KitManager.getPlayerKit(p.getUniqueId()).equals("worm")) {
-            p.sendMessage("getBlock");
             Block b = e.getBlock();
             if (b.getType().toString().equals("DIRT")) {
-                p.sendMessage("getFoodLevel");
                 if (p.getFoodLevel() < 20) {
-                    p.sendMessage("setType");
                     b.setType(Material.AIR);
                     p.setFoodLevel(p.getFoodLevel() + 1);
                 } else {
-                    p.sendMessage("breakNaturally");
                     b.breakNaturally();
                 }
             }

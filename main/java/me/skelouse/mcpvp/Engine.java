@@ -109,13 +109,21 @@ public class Engine{
 
     }
 
-    public void winGame(Player p){
-        p.kickPlayer("CONGRATULATIONS RESTARTING NOW");
-        restart();
+    public void winGame(Player p) {
+        new BukkitRunnable() {
+
+            @Override
+            public void run() {
+                p.kickPlayer("CONGRATULATIONS RESTARTING NOW");
+                plugin.getServer().spigot().restart();
+            }
+        }.runTaskLater(this.plugin, 200);
     }
 
+
+
+
     public void restart(){
-        Random rand = new Random();
         for (Player p: plugin.getServer().getOnlinePlayers()){
             p.kickPlayer("Server restarting...");
         }
