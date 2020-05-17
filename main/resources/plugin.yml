@@ -8,4 +8,4 @@ website: skelouse.com
 commands:
   hg:
     description: Pulls up help menu for Hunger Games.
-    usage: /<command>
+    usage: /<commands>
