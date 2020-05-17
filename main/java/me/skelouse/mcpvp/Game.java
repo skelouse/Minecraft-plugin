@@ -1,5 +1,6 @@
 package me.skelouse.mcpvp;
 
+import javafx.util.Pair;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -18,12 +19,10 @@ public class Game {
     public int wait_time = 10;
     public String ip = "mc-hg.com";
 
-    public class gamePlayer{
-        String kit = "";
-    }
     public ArrayList <Player> playersInGame = new ArrayList <Player> ();
     // dictionary uuid to kit name
-    public Dictionary playerKits = new Hashtable();
+    public Dictionary<UUID, String> playerKits = new Hashtable<UUID, String>();
+
 
 
 
