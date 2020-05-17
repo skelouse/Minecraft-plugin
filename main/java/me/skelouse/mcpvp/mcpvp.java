@@ -1,5 +1,6 @@
 package me.skelouse.mcpvp;
 import me.skelouse.mcpvp.commands.hg;
+import me.skelouse.mcpvp.commands.kit;
 import me.skelouse.mcpvp.events.Invincibility;
 import me.skelouse.mcpvp.events.onPlayerDeath;
 import me.skelouse.mcpvp.events.onPlayerJoin;
@@ -31,6 +32,7 @@ public class mcpvp extends JavaPlugin implements Listener{
         getServer().getPluginManager().registerEvents(new onPlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new Invincibility(), this);
         getCommand("hg").setExecutor(new hg());
+        getCommand("kit").setExecutor(new kit());
 
         engine.waitForPlayers();
 
