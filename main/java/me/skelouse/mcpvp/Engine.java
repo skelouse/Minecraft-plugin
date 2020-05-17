@@ -1,12 +1,19 @@
 package me.skelouse.mcpvp;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.GameMode;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class Engine{
 
@@ -38,7 +45,7 @@ public class Engine{
         online_count = plugin.getServer().getOnlinePlayers().size();
         diff = (online_count - game.start_size) * -1;
         messenger.msgAll("Waiting for " + (diff) + " players to start!");
-        if (diff >= 0 && game.game_started == false && game.countdown_started == false){
+        if (diff >= 0 && !game.game_started && !game.countdown_started){
             new BukkitRunnable(){
                 @Override
                 public void run() {
@@ -46,7 +53,7 @@ public class Engine{
                     waitForPlayers();
                 }
             }.runTaskLater(this.plugin, game.wait_time*20);
-        } else if (game.game_started == false && game.countdown_started == false){
+        } else if (!game.game_started && !game.countdown_started){
             startGame();
         }
 
@@ -103,17 +110,21 @@ public class Engine{
     }
 
     public void winGame(Player p){
-        p.sendMessage("Restarting server...");
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                p.kickPlayer("CONGRATULATIONS RESTARTING NOW");
-                restart();
-            }
-        }.runTaskLater(this.plugin, 300);
+        p.kickPlayer("CONGRATULATIONS RESTARTING NOW");
+        restart();
     }
 
     public void restart(){
-        plugin.getServer().reload();
+        Random rand = new Random();
+        for (Player p: plugin.getServer().getOnlinePlayers()){
+            p.kickPlayer("Server restarting...");
+        }
+        plugin.getServer().spigot().restart();
+
+
+
+
+
+
     }
 }
