@@ -1,6 +1,9 @@
 package me.skelouse.mcpvp.commands;
 
+import javafx.util.Pair;
 import me.skelouse.mcpvp.Engine;
+import me.skelouse.mcpvp.Game;
+import me.skelouse.mcpvp.KitManager;
 import me.skelouse.mcpvp.Messenger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,35 +13,54 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 
 public class kit implements CommandExecutor {
     Engine engine = Engine.getInstance();
     Messenger messenger = Messenger.getInstance();
-
+    KitManager kitmanager = KitManager.getInstance();
+    Game game = Game.getInstance();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String kit, String[] args) {
-        Player p = (Player) sender;
-     
+        if (!game.game_started) {
+            Player p = (Player) sender;
+            if (kit.equalsIgnoreCase("kit")) {
+                if (args.length == 0) {
+                    p.sendMessage("--------------------------------");
+                    p.sendMessage("These are all the available kits");
+                    p.sendMessage("--------------------------------");
+                    Enumeration<String> e = kitmanager.kitInfo.keys();
+                    StringBuilder msg = new StringBuilder();
+                    while (e.hasMoreElements()) {
+                        String k = e.nextElement();
+                        msg.append(k).append(", ");
+                    }
+                    p.sendMessage(msg.toString());
+                } else {
 
-        if (kit.equalsIgnoreCase ("kit")) {
-            if (args.length == 0) {
-                p.sendMessage("--------------------------------");
-                p.sendMessage("These are all the available kits");
-                p.sendMessage("--------------------------------");
-                p.sendMessage("Sam, Jacob");
-            } else {
-                switch (args[0].toLowerCase()) {
-                    case "sam":
-                        p.sendMessage("Sam is cool");
-                        break;
-
+                    try {
+                        String s = kitmanager.kitInfo.get(args[0]);
+                        if (args.length != 2 && !s.isEmpty()) {
+                            KitManager.setPlayerKit(p.getUniqueId(), args[0].toLowerCase());
+                            p.sendMessage("You selected kit " + args[0]);
+                        } else if (!s.isEmpty()) {
+                            p.sendMessage(s);
+                        } else {
+                            p.sendMessage("Not a valid kit.");
+                        }
+                    } catch (NullPointerException e) {
+                        p.sendMessage("Not a valid kit.");
+                        // invalid
+                    }
                 }
-            }
-        }
-        return true;
-    }
 
+            }
+
+        }return true;
+    }
 }

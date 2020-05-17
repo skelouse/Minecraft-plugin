@@ -6,6 +6,8 @@ import me.skelouse.mcpvp.events.onPlayerDeath;
 import me.skelouse.mcpvp.events.onPlayerJoin;
 import me.skelouse.mcpvp.kits.Worm;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -22,7 +24,6 @@ public class mcpvp extends JavaPlugin implements Listener{
     Engine engine = new Engine(this);
 
 
-
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -30,6 +31,7 @@ public class mcpvp extends JavaPlugin implements Listener{
 
         game.setup();
         engine.setup();
+        kitman.setup();
 
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(new onPlayerDeath(), this);
