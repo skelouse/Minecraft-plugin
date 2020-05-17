@@ -21,9 +21,7 @@ public class kit implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String kit, String[] args) {
         Player p = (Player) sender;
-        for (String s: command.getAliases()){
-            System.out.println("COMMAND ALIASES BITCH");
-        }
+     
 
         if (kit.equalsIgnoreCase ("kit")) {
             if (args.length == 0) {

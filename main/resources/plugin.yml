@@ -8,4 +8,7 @@ website: skelouse.com
 commands:
   hg:
     description: Pulls up help menu for Hunger Games.
-    usage: /<commands>
+    usage: /<command>
+  kit:
+    description: Pulls up all available kits
+    usage: /<command>
