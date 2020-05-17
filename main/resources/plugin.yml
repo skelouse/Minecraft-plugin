@@ -7,11 +7,8 @@ description: Minecraft mcpvp plugin
 website: skelouse.com
 commands:
   hg:
-<<<<<<< HEAD
     description: Pulls up help menu for Hunger Games.
     usage: /<command>
-=======
     description: hg commands
   hg start:
     description: apple
->>>>>>> game
