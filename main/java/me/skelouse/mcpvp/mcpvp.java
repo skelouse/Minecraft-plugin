@@ -11,7 +11,6 @@ import org.bukkit.event.Listener;
 
 public class mcpvp extends JavaPlugin implements Listener{
 
-
     Game game = Game.getInstance();
     Messenger messenger = Messenger.getInstance();
     KitManager kitman = KitManager.getInstance();
