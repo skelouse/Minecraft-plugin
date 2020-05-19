@@ -87,7 +87,7 @@ public class Engine{
         for(Player p: game.playersInGame) {
             p.setGameMode(GameMode.SURVIVAL);
         }
-
+        kitman.startGame();  // give players kits and items
         new BukkitRunnable() {
             @Override
             public void run(){
@@ -95,18 +95,22 @@ public class Engine{
                 for(Player p: game.playersInGame){
                     p.sendMessage("Invincibility worn off.");
 
-
                     // Invincibility wears off
-                    game.invincibility = false;
-
-                    // Give kit items here
-
-
+                    game.playersInvincible.clear();
                 }
 
             }
         }.runTaskLater(this.plugin, 200);
 
+    }
+
+    public void timedInvincible(int time){
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                game.playersInvincible.clear();
+            }
+        }.runTaskLater(this.plugin, time*20);
     }
 
     public void winGame(Player p) {
@@ -119,8 +123,6 @@ public class Engine{
             }
         }.runTaskLater(this.plugin, 200);
     }
-
-
 
 
     public void restart(){

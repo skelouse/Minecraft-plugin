@@ -1,6 +1,8 @@
 package me.skelouse.mcpvp.commands;
 
 import me.skelouse.mcpvp.Engine;
+import me.skelouse.mcpvp.Game;
+import me.skelouse.mcpvp.KitManager;
 import me.skelouse.mcpvp.Messenger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -41,6 +43,15 @@ public class hg implements CommandExecutor {
                      case "online":
                          p.sendMessage("There are " + "" + " players online.");
                          break;
+
+                     case "kit":  // fake start and give kit items / abilities
+                         Game game = Game.getInstance();
+                         KitManager kitman = KitManager.getInstance();
+                         KitManager.setPlayerKit(p.getUniqueId(), args[1].toLowerCase());
+                         p.sendMessage("You selected kit " + args[1]);
+                         game.playersInGame.add(p);
+                         kitman.buildKits();
+                         kitman.startGame();
                  }
              }
          }

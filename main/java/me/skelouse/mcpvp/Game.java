@@ -1,6 +1,5 @@
 package me.skelouse.mcpvp;
 
-import javafx.util.Pair;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -23,6 +22,8 @@ public class Game {
     // dictionary uuid to kit name
     public Dictionary<UUID, String> playerKits = new Hashtable<UUID, String>();
 
+    public ArrayList <UUID> playersInvincible = new ArrayList<UUID>();
+
 
 
 
@@ -37,7 +38,6 @@ public class Game {
 
 
     public void startGame() {
-        engine.startGame();
         messenger.msgAll("Select your kit! -- /kit");
     }
 

@@ -1,22 +1,15 @@
 package me.skelouse.mcpvp.commands;
 
-import javafx.util.Pair;
 import me.skelouse.mcpvp.Engine;
 import me.skelouse.mcpvp.Game;
 import me.skelouse.mcpvp.KitManager;
 import me.skelouse.mcpvp.Messenger;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.util.Dictionary;
 import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.List;
 
 
 public class kit implements CommandExecutor {

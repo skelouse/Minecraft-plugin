@@ -38,6 +38,7 @@ public class onPlayerJoin implements Listener {
             if (game.countdown_started){
                 p.sendMessage("Game starting in " + game.start_time + "seconds");  // need x
             } else {
+                game.playersInvincible.add(p.getUniqueId());
                 p.sendMessage("Waiting for players...");
             }
             // add to HashMap if not in
